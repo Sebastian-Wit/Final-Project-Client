@@ -10,8 +10,16 @@ import { Link } from "react-router-dom";
 const AllCampusesView = (props) => {
   // If there is no campus, display a message.
   if (!props.allCampuses.length) {
-    return <div>There are no campuses.</div>;
+    return (
+    <div>
+      <p>There are no campuses. Try adding one using the button below!</p>
+      <Link to={`newCampus`}>
+        <button>Add New Campus</button>
+      </Link>
+    </div>
+    );
   }
+  
 
   // If there is at least one campus, render All Campuses view 
   return (
@@ -26,6 +34,7 @@ const AllCampusesView = (props) => {
           <h4>campus id: {campus.id}</h4>
           <p>{campus.address}</p>
           <p>{campus.description}</p>
+          <button onClick={() => props.deleteCampus(campus.id)}>Delete Campus</button>
           <hr/>
         </div>
       ))}
@@ -41,6 +50,7 @@ const AllCampusesView = (props) => {
 // Validate data type of the props passed to component.
 AllCampusesView.propTypes = {
   allCampuses: PropTypes.array.isRequired,
+  deleteCampus: PropTypes.func.isRequired,
 };
 
 export default AllCampusesView;
