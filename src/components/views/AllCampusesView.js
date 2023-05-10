@@ -33,13 +33,17 @@ const AllCampusesView = (props) => {
           </Link>
           <h4>campus id: {campus.id}</h4>
           <p>{campus.address}</p>
+          <img src={campus.imageurl}/>
           <p>{campus.description}</p>
           <button onClick={() => props.deleteCampus(campus.id)}>Delete Campus</button>
+          <Link to={`/editCampus/${campus.id}`}>
+            <button>Edit This Campus</button>
+          </Link>
           <hr/>
         </div>
       ))}
       <br/>
-      <Link to={`/`}>
+      <Link to={`/newCampus`}>
         <button>Add New Campus</button>
       </Link>
       <br/><br/>
